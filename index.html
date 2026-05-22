@@ -1,0 +1,1430 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>K-Beauty Mink Store</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: linear-gradient(to bottom, #fff0f5, #ffe4ec);
+    }
+
+    header {
+      background: rgba(214, 87, 150, 0.5);
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    nav {
+      background: #ffb6c1;
+      padding: 12px;
+      text-align: center;
+    }
+
+    nav a {
+      margin: 0 15px;
+      text-decoration: none;
+      color: white;
+      font-weight: bold;
+      font-size: 16px;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    .container {
+      padding: 20px;
+      margin-right: 70px;
+    }
+
+    h2 {
+      text-align: center;
+      color: #ff1493;
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+    }
+
+    .product {
+      background: white;
+      padding: 15px;
+      border-radius: 15px;
+      text-align: center;
+      box-shadow: 0 0 10px rgba(0,0,0,0.15);
+      transition: transform 0.2s;
+    }
+
+    .product:hover {
+      transform: scale(1.05);
+    }
+
+    .product video {
+      width: 100%;
+      max-height: 200px;
+      border-radius: 10px;
+    }
+
+    button {
+      background: #ff69b4;
+      color: white;
+      border: none;
+      padding: 10px;
+      margin-top: 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background: #ff1493;
+    }
+    .cart-icon {
+      position: fixed;
+      right: 20px;
+      top: 20px;
+      background: #ff69b4;
+      color: white;
+      padding: 12px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 20px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.2);
+      z-index: 1000;
+    }
+
+    .cart-icon span {
+      position: absolute;
+      top: -5px;
+      right: -5px;
+      background: red;
+      color: white;
+      border-radius: 50%;
+      padding: 4px 6px;
+      font-size: 12px;
+      display: none;
+    }
+    .cart {
+      position: fixed;
+      right: 0;
+      top: 0;
+      width: 250px;
+      height: 100%;
+      background: white;
+      box-shadow: -3px 0 10px rgba(0,0,0,0.2);
+      padding: 15px;
+      overflow-y: auto;
+      transform: translateX(100%); 
+      transition: transform 0.3s ease-in-out;
+      z-index: 999;
+    }
+
+    .cart.open {
+      transform: translateX(0);
+    }
+
+    .cart h2 {
+      text-align: center;
+    }
+
+    .cart ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .cart li {
+      padding: 5px;
+      border-bottom: 1px solid #ddd;
+    }
+
+    
+    .video-section {
+      margin-top: 40px;
+    }
+
+    .video-container {
+      position: relative;
+      width: 100%;
+      max-width: 400px;
+      margin: 20px auto;
+    }
+
+    .video-container iframe {
+      width: 100%;
+      height: 220px;
+      border: none;
+      border-radius: 15px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
+
+    footer {
+      background: #ff69b4;
+      color: white;
+      text-align: center;
+      padding: 15px;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+<div id="pantallaInicio" onclick="entrarPagina()">
+<script>
+
+function volverInicio(){
+
+document.getElementById("pantallaInicio").style.display = "flex";
+document.getElementById("pantallaInicio").style.opacity = "1";
+
+document.getElementById("contenidoPagina").style.display = "none";
+
+}
+
+</script>
+  <img src="logo.jpg" class="logoInicio">
+
+  <h1>K-BEAUTY MINK</h1>
+
+  <p>Haz clic para entrar ✨</p>
+
+</div>
+
+<div id="contenidoPagina">
+
+<style>
+
+#pantallaInicio{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100vh;
+    background:linear-gradient(135deg,#ffd6ec,#ffc0e8,#ffeef8);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    z-index:999999;
+    cursor:pointer;
+    transition:1s;
+}
+
+.logoInicio{
+    width:320px;
+    border-radius:50%;
+    box-shadow:
+        0 0 25px #ff69b4,
+        0 0 50px #ff1493;
+    animation:flotarLogo 2s infinite alternate;
+}
+
+#pantallaInicio h1{
+    color:#ff1493;
+    font-size:55px;
+    margin-top:25px;
+    font-family:Georgia;
+    text-shadow:
+        0 0 10px #fff,
+        0 0 20px #ff69b4;
+}
+
+#pantallaInicio p{
+    color:#ff69b4;
+    font-size:24px;
+    font-weight:bold;
+    margin-top:10px;
+    animation:parpadeo 1s infinite alternate;
+}
+
+@keyframes flotarLogo{
+    from{
+        transform:translateY(0px);
+    }
+    to{
+        transform:translateY(-15px);
+    }
+}
+
+@keyframes parpadeo{
+    from{
+        opacity:.5;
+    }
+    to{
+        opacity:1;
+    }
+}
+
+
+#contenidoPagina{
+    display:none;
+}
+
+</style>
+
+<header>
+  <img src="logo.jpg" width="300">
+
+  <p class="frase">
+    Resalta tu belleza natural con la magia del maquillaje coreano auténtico
+  </p>
+
+<style>
+.frase{
+    font-family: 'Georgia', serif;
+    font-size: 28px;
+    text-align: center;
+    font-style: italic;
+    font-weight: bold;
+    color: #ff69b4;
+    letter-spacing: 2px;
+    text-shadow:
+        0 0 5px #ffc0cb,
+        0 0 10px #ffb6c1,
+        0 0 20px #ff69b4;
+    background: rgba(255,255,255,0.4);
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 0 25px rgba(255,105,180,0.5);
+    animation: brillo 2s infinite alternate;
+}
+
+@keyframes brillo{
+    from{
+        transform: scale(1);
+        opacity: 0.9;
+    }
+    to{
+        transform: scale(1.03);
+        opacity: 1;
+    }
+}
+</style>
+
+</header>
+
+<div style="text-align:center;">
+
+<nav class="menu">
+  <a href="#" onclick="volverInicio()">Inicio</a>
+  <a href="#Nuestros modelos">Nuestros modelos</a>
+  <a href="#productos">Productos</a>
+  <a href="#videos">Videos</a>
+  <a href="#contacto">Contacto</a>
+</nav>
+
+</div>
+
+
+</div>
+
+<script>
+
+function entrarPagina(){
+
+document.getElementById("pantallaInicio").style.opacity = "0";
+
+setTimeout(()=>{
+
+document.getElementById("pantallaInicio").style.display = "none";
+
+document.getElementById("contenidoPagina").style.display = "block";
+
+},800);
+
+}
+
+</script>
+
+</body>
+  
+<div class="container">
+  <h2 id="productos" class="neon">Nuestros Productos</h2>
+  <style>
+.neon{
+    font-size:60px;
+    font-weight:bold;
+    text-align:center;
+    color:#fff0f5;
+    text-shadow:
+        0 0 5px #ffb6c1,
+        0 0 10px #ff69b4,
+        0 0 20px #ff69b4,
+        0 0 40px #ff1493,
+        0 0 80px #ff1493;
+    animation:parpadeo 1s infinite alternate;
+}
+
+@keyframes parpadeo{
+    from{
+        opacity:0.8;
+    }
+    to{
+        opacity:1;
+    }
+}
+</style>
+  <div class="products">
+    <div class="product">
+      <img src="image.jpg" width="200">
+      <h3>Lip Tint Coreano</h3>
+      <p>$200 MXN</p>
+      <button onclick="addToCart('Lip Tint Coreano', 200, 'Captura de pantalla 2026-04-15 094901.png')">
+    Agregar al carrito
+  </button>
+
+    </div>
+
+    <div class="product">
+      <img src="image-1.jpg" width="200">
+      <h3>Base Cushion</h3>
+      <p>$320 MXN</p>
+      <button onclick="addToCart('Base Cushion', 320, 'Captura de pantalla 2026-04-15 094911.png')">
+    Agregar al carrito
+  </button>
+
+    </div>
+
+    <div class="product">
+      <img src="Captura de pantalla 2026-04-15 094929.png" width="200">
+      <h3>Rubor Coreano</h3>
+      <p>$210 MXN</p>
+      <button onclick="addToCart('Rubor Coreano', 210, 'Captura de pantalla 2026-04-15 094929.png')">
+    Agregar al carrito
+  </button>
+    </div>
+
+    <div class="product">
+      <img src="71QE9D25KWL._AC_AIweblab1006854,T4_FMavif_SF1050,1050_PQ64_.avif" width="200">
+      <h3>Paleta de Sombras</h3>
+      <p>$450 MXN</p>
+      <button onclick="addToCart('Paleta de Sombras', 450, 'Captura de pantalla 2026-04-15 094946.png')">
+    Agregar al carrito
+  </button>
+    </div>
+  </div><br>
+<div class="products">
+    <div class="product">
+      <img src="IMG-20260519-WA0032.jpg" width="200">
+      <h3>Gloss Mink Glow</h3>
+      <p>$470 MXN</p>
+      <button onclick="addToCart('Gloss Mink Glow', 470, 'CIMG-20260519-WA0032.jpg')">
+    Agregar al carrito
+  </button>
+
+    </div>
+
+    <div class="product">
+      <img src="IMG-20260519-WA0029.jpg" width="200">
+      <h3>Cushion Perfect Skin</h3>
+      <p>$120 MXN</p>
+      <button onclick="addToCart('Cushion Perfect Skin', 120, 'IMG-20260519-WA0029.jpg')">
+    Agregar al carrito
+  </button>
+
+    </div>
+
+    <div class="product">
+      <img src="IMG-20260519-WA0030.jpg" width="200">
+      <h3>Blush Pink Aura</h3>
+      <p>$310 MXN</p>
+      <button onclick="addToCart('Blush Pink Aura', 310, 'IMG-20260519-WA0030.jpg')">
+    Agregar al carrito
+  </button>
+    </div>
+
+    <div class="product">
+      <img src="IMG-20260519-WA0031.jpg" width="200">
+      <h3>Glass serum</h3>
+      <p>$550 MXN</p>
+      <button onclick="addToCart('Glass serum', 550, 'IMG-20260519-WA0031.jpg')">
+    Agregar al carrito
+  </button>
+    </div>
+  </div><br>
+  <div class="container">
+ <h2 id="Nuestros modelos" class="neon">Nuestros modelos</h2>
+
+<style>
+.neon{
+    font-size:60px;
+    font-weight:bold;
+    text-align:center;
+    color:#fff;
+    text-shadow:
+       0 0 5px #ffb6c1,
+        0 0 10px #ff69b4,
+        0 0 20px #ff69b4,
+        0 0 40px #ff1493,
+        0 0 80px #ff1493;
+    animation:parpadeo 1s infinite alternate;
+}
+
+@keyframes parpadeo{
+    from{
+        opacity:0.8;
+    }
+    to{
+        opacity:1;
+    }
+}
+</style>
+  
+  <div class="products">
+    <div class="product">
+      <img src="K-BEAUTY MINK_20260507_150924_0000.png" width="200">
+      <h3>KIM JENNIE</h3>
+      <p>Nuestro ultimo lanzamiento ROUGE ECLAT</p>
+    </div>
+
+    <div class="product">
+      <img src="agregar un títuloMINK_20260507_151052_0000.png" width="200">
+      <h3>JENNIE KIM</h3>
+      <p>Nuestro ultimo lanzamiento MINTY</p>
+    </div>
+
+    <div class="product">
+      <img src="1778131984032(1).png" width="200">
+      <h3>JENNIFER </h3>
+      <p>Nuestro ultimo lanzamiento VELVET ROUGE</p>
+    </div>
+
+    <div class="product">
+     <img src="MINK_20260507_151247_0000.png" width="200">
+      <h3>NINI</h3>
+      <p>Nuestro ultimo lanzamiento ROSELVET</p>
+    </div>
+  </div>
+  </div><br>
+<button id="openCart">🛒 <span id="count">0</span></button>
+
+<div id="overlay"></div>
+
+<div id="cart">
+<h2>Carrito 🛒</h2>
+
+<div id="cartItems"></div>
+
+<p>Total: $<span id="total">0</span></p>
+
+<h3>Metodo de pago</h3>
+
+<div class="pagos">
+
+<label class="opcion">
+<input type="radio" name="pago">
+<img src="visa23.png" width="90">visa
+</label>
+
+<label class="opcion">
+<input type="radio" name="pago">
+<img src="Mastercard.png" width="60">
+MasterCard
+</label>
+
+<label class="opcion">
+<input type="radio" name="pago">
+<img src="paypal.png" width="60">paypal
+</label>
+
+</div>
+<h3>Dirección de envío</h3>
+
+<textarea id="direccion"
+placeholder="🏠 Calle, número, colonia, ciudad..."
+rows="4"></textarea>
+
+<div class="cart-buttons">
+<button onclick="clearCart()">Vaciar carrito</button>
+<button onclick="pagar()">Pagar ✨</button>
+</div>
+
+<br>
+<br>
+
+</div>
+
+<div id="ticket">
+<div class="ticket-box">
+
+<h2>K-BEAUTY MINK</h2>
+<hr>
+
+<div id="ticketItems"></div>
+
+<hr>
+<h3>Total: $<span id="ticketTotal"></span></h3>
+<center>
+<img src="Sticker Circular gracias por su Compra Simple Negro.png" width="200">
+</center>
+<br><br>
+<button onclick="cerrarTicket()">Cerrar</button>
+
+</div>
+</div>
+
+
+<style>
+#openCart{
+position:fixed;
+top:20px;
+right:20px;
+background:linear-gradient(45deg,#ff69b4,#ff1493);
+color:white;
+border:none;
+padding:15px 18px;
+border-radius:50px;
+font-size:18px;
+box-shadow:0 0 20px #ff69b4;
+z-index:10000;
+cursor:pointer;
+}
+
+#count{
+background:white;
+color:#ff1493;
+border-radius:50%;
+padding:4px 9px;
+font-weight:bold;
+}
+
+#overlay{
+position:fixed;
+width:100%;
+height:100%;
+background:rgba(0,0,0,.6);
+opacity:0;
+pointer-events:none;
+transition:.4s;
+z-index:5000;
+}
+
+#overlay.active{
+opacity:1;
+pointer-events:all;
+}
+
+#cart{
+position:fixed;
+top:0;
+right:-420px;
+width:400px;
+height:100%;
+background:linear-gradient(180deg,#ffe4f2,#ffcce7);
+padding:20px;
+transition:.4s;
+z-index:9999;
+overflow:hidden;
+display:flex;
+flex-direction:column;
+color:#ff1493;
+box-shadow:-10px 0 40px rgba(255,20,147,.4);
+}
+
+#cart.active{
+right:0;
+}
+
+#cart h2,h3{
+text-align:center;
+}
+
+#cartItems{
+flex:1;
+overflow-y:auto;
+padding-right:8px;
+margin-bottom:15px;
+}
+
+.item{
+display:grid;
+grid-template-columns:70px 1fr auto;
+gap:12px;
+align-items:center;
+background:white;
+padding:12px;
+border-radius:18px;
+margin-bottom:12px;
+box-shadow:0 0 15px rgba(255,105,180,.2);
+}
+
+.item img{
+width:65px;
+height:65px;
+object-fit:cover;
+border-radius:15px;
+}
+
+.qty{
+display:flex;
+align-items:center;
+gap:8px;
+}
+
+.qty button{
+width:30px;
+height:30px;
+border:none;
+border-radius:50%;
+background:#ff69b4;
+color:white;
+font-weight:bold;
+cursor:pointer;
+}
+
+.pagos{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:10px;
+}
+
+.opcion{
+background:white;
+padding:12px;
+border-radius:18px;
+text-align:center;
+cursor:pointer;
+border:2px solid transparent;
+transition:.3s;
+box-shadow:0 0 10px rgba(255,105,180,.2);
+}
+
+.opcion:hover{
+transform:translateY(-4px);
+}
+
+.opcion:has(input:checked){
+border-color:#ff1493;
+box-shadow:0 0 18px #ff69b4;
+}
+
+.opcion input{
+display:none;
+}
+
+.opcion img{
+height:35px;
+object-fit:contain;
+}
+
+#direccion{
+width:100%;
+padding:15px;
+border:none;
+border-radius:18px;
+resize:none;
+font-size:15px;
+box-shadow:0 0 12px rgba(255,105,180,.2);
+outline:none;
+}
+
+.cart-buttons{
+display:flex;
+gap:10px;
+margin-top:15px;
+}
+
+.cart-buttons button{
+flex:1;
+padding:14px;
+border:none;
+border-radius:18px;
+font-weight:bold;
+cursor:pointer;
+}
+
+.cart-buttons button:first-child{
+background:#ffd1e8;
+color:#ff1493;
+}
+
+.cart-buttons button:last-child{
+background:linear-gradient(45deg,#ff69b4,#ff1493);
+color:white;
+box-shadow:0 0 15px #ff69b4;
+}
+
+#ticket{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,.75);
+display:none;
+justify-content:center;
+align-items:center;
+z-index:20000;
+}
+
+.ticket-box{
+background:white;
+padding:25px;
+width:320px;
+border-radius:25px;
+box-shadow:0 0 30px #ff69b4;
+text-align:center;
+}
+</style>
+
+
+<script>
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+const cartDiv = document.getElementById("cart");
+const overlay = document.getElementById("overlay");
+
+document.getElementById("openCart").onclick = toggleCart;
+overlay.onclick = toggleCart;
+
+function toggleCart(){
+cartDiv.classList.toggle("active");
+overlay.classList.toggle("active");
+}
+
+function addToCart(name, price, img){
+let item = cart.find(i => i.name === name);
+
+if(item){
+item.qty++;
+}else{
+cart.push({name, price, img, qty:1});
+}
+
+save();
+render();
+}
+
+function changeQty(index, delta){
+cart[index].qty += delta;
+if(cart[index].qty <= 0) cart.splice(index,1);
+save();
+render();
+}
+
+function save(){
+localStorage.setItem("cart", JSON.stringify(cart));
+}
+
+function render(){
+const container = document.getElementById("cartItems");
+container.innerHTML = "";
+
+let total = 0;
+let count = 0;
+
+cart.forEach((item,i)=>{
+total += item.price * item.qty;
+count += item.qty;
+
+container.innerHTML += `
+<div class="item">
+<img src="${item.img}">
+<div>
+${item.name}<br>$${item.price}
+</div>
+<div class="qty">
+<button onclick="changeQty(${i},-1)">-</button>
+${item.qty}
+<button onclick="changeQty(${i},1)">+</button>
+</div>
+</div>
+`;
+});
+
+document.getElementById("total").innerText = total;
+document.getElementById("count").innerText = count;
+}
+
+function clearCart(){
+cart = [];
+save();
+render();
+}
+
+function pagar(){
+
+let direccion = document.getElementById("direccion").value;
+
+if(direccion.trim() === ""){
+alert("Escribe tu dirección");
+return;
+}
+
+let items = document.getElementById("ticketItems");
+items.innerHTML = "";
+
+let total = 0;
+
+cart.forEach(item=>{
+items.innerHTML += `
+${item.name} x${item.qty}<br>
+$${item.price * item.qty}
+<hr>
+`;
+
+total += item.price * item.qty;
+});
+
+items.innerHTML += `
+Dirección:<br>
+${direccion}
+<hr>
+`;
+
+document.getElementById("ticketTotal").innerText = total;
+document.getElementById("ticket").style.display="flex";
+
+clearCart();
+toggleCart();
+
+document.getElementById("direccion").value="";
+}
+function cerrarTicket(){
+document.getElementById("ticket").style.display="none";
+}
+render();
+</script>
+ 
+ <style>
+.products{
+  display: flex;
+  justify-content: center;
+  gap: 70px; 
+  padding: 20px;
+}
+
+.products video{
+  width: 250px;
+  height: 350px;
+  border-radius: 15px;
+}
+</style>
+<table class="kb-table">
+    <thead>
+        <tr>
+            <th>Producto</th>
+            <th>Tipo</th>
+            <th>Beneficio</th>
+            <th>Precio</th>
+            <th>Popularidad</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Gloss Mink Glow</td>
+            <td>Labial</td>
+            <td>Brillo intenso</td>
+            <td>$299</td>
+            <td>★★★★★</td>
+        </tr>
+        <tr>
+            <td>Cushion Perfect Skin</td>
+            <td>Base</td>
+            <td>Acabado natural</td>
+            <td>$599</td>
+            <td>★★★★☆</td>
+        </tr>
+        <tr>
+            <td>Blush Pink Aura</td>
+            <td>Rubor</td>
+            <td>Efecto juvenil</td>
+            <td>$350</td>
+            <td>★★★★★</td>
+        </tr>
+        <tr>
+            <td>Glass Serum</td>
+            <td>Skincare</td>
+            <td>Piel luminosa</td>
+            <td>$799</td>
+            <td>★★★★★</td>
+        </tr>
+    </tbody>
+</table>
+
+<style>
+body{
+background:linear-gradient(135deg,#fff0f7,#ffe6ff,#f0f8ff);
+font-family:Arial;
+}
+
+.kb-table{
+width:90%;
+margin:auto;
+border-collapse:collapse;
+border-radius:20px;
+overflow:hidden;
+box-shadow:0 0 30px rgba(255,105,180,.4);
+backdrop-filter:blur(15px);
+background:rgba(255,255,255,.7);
+}
+
+.kb-table thead{
+background:linear-gradient(90deg,#ff66cc,#cc99ff,#66ffff);
+color:white;
+font-size:20px;
+text-shadow:0 0 10px white;
+}
+
+.kb-table th,
+.kb-table td{
+padding:18px;
+text-align:center;
+}
+
+.kb-table tbody tr{
+transition:.4s;
+}
+
+.kb-table tbody tr:nth-child(even){
+background:rgba(255,182,193,.2);
+}
+
+.kb-table tbody tr:hover{
+transform:scale(1.03);
+background:rgba(255,105,180,.35);
+box-shadow:0 0 20px hotpink;
+color:#fff;
+}
+</style>
+<br>
+<div class="beauty-form">
+
+<h2>✨ Descubre tu Beauty Match ✨</h2>
+<p class="subtitulo">
+Completa este formulario para encontrar los productos perfectos para tu piel 💖
+</p>
+
+<form>
+
+<label>💧 Tipo de piel</label>
+<select>
+<option>Piel grasa</option>
+<option>Piel seca</option>
+<option>Piel mixta</option>
+<option>Piel sensible</option>
+<option>Piel normal</option>
+</select>
+
+<label>🎨 Subtono de piel</label>
+<select>
+<option>Cálido</option>
+<option>Frío</option>
+<option>Neutro</option>
+</select>
+
+<label>🌸 ¿Qué acabado prefieres?</label>
+<select>
+<option>Natural</option>
+<option>Glow</option>
+<option>Mate</option>
+<option>Glass Skin</option>
+</select>
+
+<label>💄 Producto favorito</label>
+<div class="checks">
+<label><input type="checkbox"> Lip Tint</label>
+<label><input type="checkbox"> Cushion</label>
+<label><input type="checkbox"> Rubor</label>
+<label><input type="checkbox"> Sombras</label>
+</div>
+
+<label>✨ ¿Qué buscas mejorar?</label>
+<textarea placeholder="Ejemplo: hidratación, brillo, cobertura..."></textarea>
+
+<button type="submit">Enviar formulario 💖</button>
+
+</form>
+
+</div>
+
+<style>
+
+.beauty-form{
+width:90%;
+max-width:700px;
+margin:50px auto;
+padding:40px;
+border-radius:35px;
+background:rgba(255,255,255,0.25);
+backdrop-filter:blur(18px);
+box-shadow:
+0 0 25px rgba(255,105,180,.3),
+0 0 50px rgba(255,255,255,.4);
+border:2px solid rgba(255,255,255,.4);
+font-family:Arial;
+}
+
+.beauty-form h2{
+text-align:center;
+font-size:42px;
+color:#ff4f9a;
+margin-bottom:10px;
+text-shadow:0 0 10px rgba(255,105,180,.5);
+}
+
+.subtitulo{
+text-align:center;
+color:#555;
+font-size:18px;
+margin-bottom:30px;
+}
+
+.beauty-form form{
+display:flex;
+flex-direction:column;
+gap:18px;
+}
+
+.beauty-form label{
+font-size:18px;
+font-weight:bold;
+color:#444;
+}
+
+.beauty-form select,
+.beauty-form textarea{
+padding:15px;
+border:none;
+border-radius:18px;
+background:rgba(255,255,255,.8);
+font-size:16px;
+outline:none;
+box-shadow:0 0 10px rgba(0,0,0,.08);
+}
+
+.beauty-form textarea{
+resize:none;
+height:120px;
+}
+
+.checks{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:10px;
+}
+
+.checks label{
+background:white;
+padding:12px;
+border-radius:15px;
+box-shadow:0 0 10px rgba(255,105,180,.15);
+cursor:pointer;
+transition:.3s;
+}
+
+.checks label:hover{
+transform:scale(1.03);
+background:#ffe6f2;
+}
+
+.beauty-form button{
+margin-top:20px;
+padding:18px;
+border:none;
+border-radius:20px;
+background:linear-gradient(45deg,#ff69b4,#ff1493);
+color:white;
+font-size:20px;
+font-weight:bold;
+cursor:pointer;
+transition:.4s;
+box-shadow:0 0 20px rgba(255,105,180,.5);
+}
+
+.beauty-form button:hover{
+transform:translateY(-4px) scale(1.02);
+box-shadow:0 0 30px rgba(255,20,147,.7);
+}
+
+</style>
+<br>
+<div class="audio-container">
+
+
+<div class="audio-box">
+
+<h2>💄 nuestro proposito</h2>
+
+<p>
+Descubre los beneficios de nuestros productos coreanos 💖
+</p>
+
+<audio controls>
+  <source src="WhatsApp Audio 2026-05-20 at 11.18.46 PM.mp3.ogg" type="audio/mp3">
+</audio>
+
+</div>
+
+
+<div class="audio-box">
+
+<h2>🌸Experiencia Beauty</h2>
+
+<p>
+Experiencia mink ✨
+</p>
+
+<audio controls>
+  <source src="Audio 3.m4a" type="audio/mp3">
+</audio>
+
+</div>
+
+</div>
+
+<style>
+
+.audio-container{
+display:flex;
+justify-content:center;
+gap:30px;
+flex-wrap:wrap;
+margin:60px auto;
+width:90%;
+}
+
+.audio-box{
+width:320px;
+padding:30px;
+text-align:center;
+border-radius:30px;
+background:rgba(255,255,255,0.25);
+backdrop-filter:blur(15px);
+box-shadow:
+0 0 25px rgba(255,105,180,.25),
+0 0 50px rgba(255,255,255,.4);
+border:2px solid rgba(255,255,255,.4);
+transition:.4s;
+animation:flotar 2s infinite alternate;
+}
+
+.audio-box:hover{
+transform:translateY(-8px) scale(1.03);
+box-shadow:
+0 0 35px rgba(255,20,147,.4);
+}
+
+.audio-box h2{
+font-size:28px;
+color:#ff4f9a;
+margin-bottom:15px;
+font-family:Georgia;
+text-shadow:0 0 10px rgba(255,105,180,.4);
+}
+
+.audio-box p{
+font-size:17px;
+color:#555;
+margin-bottom:20px;
+}
+
+.audio-box audio{
+width:100%;
+border-radius:20px;
+}
+
+@keyframes flotar{
+from{
+transform:translateY(0px);
+}
+to{
+transform:translateY(-6px);
+}
+}
+
+</style>
+<style>
+.entrevista-video{
+  width: 70%;
+  max-width: 1200px;
+  margin: 50px auto;
+  background: linear-gradient(135deg, #ffe0ec, #ffd6f5);
+  padding: 30px;
+  border-radius: 30px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+  text-align: center;
+}
+
+.entrevista-video h2{
+  font-size: 45px;
+  color: #ff4f9a;
+  margin-bottom: 25px;
+  font-family: Arial, sans-serif;
+  letter-spacing: 3px;
+}
+
+.entrevista-video video{
+  width: 100%;
+  height: 650px;
+  border-radius: 25px;
+  object-fit: cover;
+  border: 6px solid white;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+}
+
+.entrevista-video p{
+  font-size: 20px;
+  color: #444;
+  margin-top: 20px;
+  font-family: Arial, sans-serif;
+}
+</style>
+
+<div class="entrevista-video">
+   <h2 id="videos" class="neon">🎤 ENTREVISTA EXCLUSIVA</h2>
+
+  <video controls>
+    <source src="Video Project 1.mp4" type="video/mp4">
+    Tu navegador no soporta videos.
+  </video>
+
+  <p>
+    Entrevista ala CEO madre soltera y parte de la creacion de mink
+  </p>
+
+</div>
+<div class="pdf-deluxe">
+    <h2>🌸 Catálogo Exclusivo K-Beauty Mink 🌸</h2>
+
+    <embed src="39021_El_arte_coreano_del_cuidado_de_la_piel_Miin.pdf" width="600" height="600">
+
+    <p>Descubre lujo, innovación y belleza coreana auténtica ✨</p>
+</div>
+
+<style>
+.pdf-deluxe{
+    width:60%;
+    margin:auto;
+    padding:30px;
+    text-align:center;
+    background:rgba(255,255,255,0.25);
+    backdrop-filter:blur(18px);
+    border-radius:30px;
+    box-shadow:
+        0 0 20px #ffc0cb,
+        0 0 40px #ff69b4,
+        inset 0 0 20px rgba(255,255,255,0.4);
+    border:3px solid rgba(255,182,193,0.6);
+    animation:glow 2s infinite alternate;
+}
+
+.pdf-deluxe h2{
+    font-size:38px;
+    color:#ff1493;
+    font-family:'Georgia', serif;
+    text-shadow:
+        0 0 10px #ffc0cb,
+        0 0 20px #ff69b4;
+}
+
+.pdf-deluxe embed{
+    border-radius:25px;
+    border:5px solid #ffb6c1;
+    box-shadow:
+        0 0 25px #ff69b4,
+        0 0 50px #ffc0cb;
+    transition:0.5s;
+}
+
+.pdf-deluxe embed:hover{
+    transform:scale(1.02);
+    box-shadow:
+        0 0 40px #ff1493,
+        0 0 70px #ff69b4;
+}
+
+.pdf-deluxe p{
+    margin-top:20px;
+    font-size:22px;
+    color:#ff69b4;
+    font-style:italic;
+}
+
+@keyframes glow{
+    from{
+        box-shadow:0 0 20px #ffc0cb;
+    }
+    to{
+        box-shadow:0 0 50px #ff1493;
+    }
+}
+</style>
+</div>
+        </p>
+        <footer id="contacto">
+  <p>© 2026 K-Beauty Store | kbeautymink@gmail.com</p>
+</footer>
+<button id="btnTop">⬆</button>
+
+<style>
+#btnTop{
+position:fixed;
+bottom:30px;
+right:30px;
+width:60px;
+height:60px;
+border:none;
+border-radius:50%;
+background:#ff1493;
+color:white;
+font-size:28px;
+cursor:pointer;
+display:none;
+justify-content:center;
+align-items:center;
+box-shadow:0 0 15px rgba(0,0,0,0.4);
+z-index:9999;
+transition:0.3s;
+animation:flotar 1.2s infinite alternate;
+}
+
+#btnTop:hover{
+background:#ff69b4;
+transform:scale(1.1);
+}
+
+@keyframes flotar{
+from{
+transform:translateY(0px);
+}
+to{
+transform:translateY(-8px);
+}
+}
+</style>
+
+<script>
+
+const btnTop = document.getElementById("btnTop");
+
+window.addEventListener("scroll",()=>{
+
+if(window.scrollY > 200){
+
+btnTop.style.display = "flex";
+
+}else{
+
+btnTop.style.display = "none";
+
+}
+
+});
+
+btnTop.addEventListener("click",()=>{
+
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
+
+});
+
+</script>
+ </html>
